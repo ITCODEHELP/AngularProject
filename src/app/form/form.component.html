@@ -1,0 +1,80 @@
+<!--<p>
+    <label>Name:</label>
+    <input type="text" [formControl]="name">
+</p>
+<p>{{name.value}}</p>-->
+<div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <p>
+            <label for="name">Name:</label>
+            <input type="text" formControlName="name" id="name">
+            <span *ngIf="name.invalid && name.touched">Name is required</span>
+        </p>
+        <p>
+            <label>Email:</label>
+            <input type="email" formControlName="email">
+        </p>  
+        <div [hidden]="email.valid || email.untouched"> 
+            <div *ngIf="email.invalid && email.touched">Email is required</div>
+            <div *ngIf="email.errors.pattern">Invalid Email</div>
+        </div>
+        <p>
+            <label>Password:</label>
+            <input type="password" formControlName="password" id="pwd" name="pwd" autocomplete="on">
+            <span *ngIf="password.invalid && password.touched">Password is required</span>
+        </p>
+        <p>
+            <label>Country:</label>
+            <select name="country" formControlName="country" (change)="onChange($event)">
+                <option>India</option>
+                <option>America</option>
+                <option>Australia</option>
+                <option>Germany</option>
+            </select>
+            <span *ngIf="country.invalid && country.touched">Country is required</span>
+        </p>
+        <p>
+            <label>City:</label>
+            <input type="text" formControlName="city">
+            <span *ngIf="city.invalid && city.touched">City is required</span>
+        </p>
+        <p>
+            <label>Zipcode:</label>
+            <input type="text" formControlName="zipcode">
+            <span *ngIf="zipcode.invalid && zipcode.touched">Zipcode is required</span>
+        </p>
+        <p>
+            <button type="submit" [disabled]="form.invalid">Submit</button>
+        </p>
+    </form>
+</div>
+<table>
+    <caption>Statement Summary</caption>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col">Country</th>
+        <th scope="col">City</th>
+        <th scope="col">Zipcode</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+        <div class="" *ngFor="let a of data">
+            <tr>
+                <td data-label="name">{{a.name}}</td>
+                <td data-label="email">{{a.email}}</td>
+                <td data-label="password">{{a.password}}</td>
+                <td data-label="country">{{a.country}}</td>
+                <td data-label="city">{{a.city}}</td>
+                <td data-label="zipcode">{{a.zipcode}}</td>
+               
+              </tr>
+        </div>
+
+ 
+ 
+    </tbody>
+  </table>
